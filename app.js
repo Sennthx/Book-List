@@ -19,7 +19,7 @@ function formCheck(e) {
 
 function addListItem(e) {
     e.preventDefault();
-    if(formCheck) {
+    if(formCheck()) {
         // Getting UI elements
         const title = document.querySelector(".book-input");
         const author = document.querySelector(".author-input");
