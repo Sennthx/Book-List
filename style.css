@@ -91,6 +91,25 @@ form{
     border-radius: 1px;
 }
 
+.first-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.messageBox {
+  display: none;
+  align-items: center;
+  padding-left: 2.5%;
+  color: black;
+  margin: auto;
+  width: 50%;
+  border: 2px black solid;
+  height: 75%;
+  border-radius: 1px;
+  font-size: 0.9rem;
+  font-family: 'Roboto Slab', serif;
+}
+
 .title {
     font-weight: 700;
     font-size: 2.5rem;
@@ -103,7 +122,31 @@ form{
     font-weight: 400;
 }
 
-input[id="input-field"] {
+.main-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 50px;
+  padding-bottom: 10px;
+  border-bottom: 1px black solid;
+}
+
+.main-results-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 50px;
+  border-bottom: 1px black solid;
+}
+
+.title-result {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.title-items {
+    font-size: 0.9rem;
+    font-family: 'Roboto Slab', serif;
+    padding: 15px 0 15px 0;
+}
+
+input[class^="input-field"] {
     font-family: 'Roboto Slab', serif;
     font-size: 1rem;
     color: rgb(0, 0, 0, 0.80);
@@ -114,9 +157,10 @@ input[id="input-field"] {
     border: 1px rgb(0, 0, 0, 0.5) solid;
     border-radius: 1px;
 }
+input[class^="input-field"]:focus {
+  outline: 2px solid black;
+}
 
-table#results-table {
-    border: 1px black solid;
-    width: 100%;
-    height: 300px;
+.result-container {
+  margin-top: 20px;
 }
