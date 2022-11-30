@@ -5,44 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Book List</title>
 </head>
 <body>
     <!-- Container start -->
     <div class="main-container">
         <form>
-            <div class="title">
-                Add a Book
+            <div class="first-row">
+                <span class="title">Add a Book</span>
+                <div class="messageBox"><span id="message">Please fill out the form correctly</span></div>
             </div>
             <div class="input-title">
                 <div class="title-input">Book title</div>
-                <input type="text" id="input-field">
+                <input type="text" class="input-field book-input">
             </div>
             <div class="input-author">
                 <div class="title-input">Author</div>
-                <input type="text" id="input-field">
+                <input type="text" class="input-field author-input">
             </div>
             <div class="input-ISBN">
                 <div class="title-input">ISBN</div>
-                <input type="text" id="input-field">
+                <input type="text" class="input-field isbn-input">
             </div>
             <div class="input-submit">
                 <input type="submit" id="form-btn" value="Add Book">
             </div>
         </form>
         <div class="result-container">
-            <table id="results-table">
-                <tr>
-                    <td>asd</td>
-                    <td>asd</td>
-                    <td>asd</td>
-                </tr>
-                <tr>
-                    <td>asd</td>
-                    <td>asd</td>
-                    <td>asd</td>
-                </tr>
-            </table>
+            <div class="main-results">
+                <div class="title-result">Title</div>
+                <div class="title-result">Author</div>
+                <div class="title-result">ISBN</div>
+            </div>
         </div>
     </div>
      <!-- Container end -->
