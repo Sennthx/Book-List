@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 16px;
+  font-family: 'Oswald', sans-serif;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+.main-container {
+    width: 60%;
+    max-width: 1250px;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    border: 1px black solid;
+    border-radius: 1px;
+    padding: 30px;
+    display: grid;
+    gap: 25px;
+}
+
+form{
+    display: grid;
+    gap: 15px;
+}
+
+#form-btn {
+    margin-top: 5px;
+    font-size: 1.30rem;
+    padding: 5px 40px 5px 40px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    border: 1px rgb(0, 0, 0, 0.5) solid;
+    border-radius: 1px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
+}
+
+.title-input {
+    font-size: 1.5rem;
+    padding-bottom: 5px;
+    font-weight: 400;
+}
+
+input[id="input-field"] {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1rem;
+    color: rgb(0, 0, 0, 0.80);
+    height: 40px;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    font-weight: 400;
+    border: 1px rgb(0, 0, 0, 0.5) solid;
+    border-radius: 1px;
+}
+
+table#results-table {
+    border: 1px black solid;
+    width: 100%;
+    height: 300px;
+}
