@@ -1,3 +1,4 @@
+// Book class start
 class Book {
     constructor(title, author, isbn) {
         this.title = title;
@@ -15,7 +16,9 @@ class Book {
         } else ui.sendMessage("Please fill out the form first!", 0);
     }
 }
+// Book class end
 
+// UI class start
 class UI {
     addBookToList(book) {
         // Creating items
@@ -48,27 +51,36 @@ class UI {
         }
     }
     clearItem(target) {
-        if (target.id === "delete-icon" ){
+        if (target.id === "delete-icon") {
             target.parentElement.parentElement.remove();
         }
     }
-
     clearFields() {
-        const inputs = document.querySelectorAll(".input-field");
-        for(let i = 0; i < inputs.length; i++) {
-            inputs.value = "";
+        const inputs = Array.from(document.querySelectorAll(".input-field"));
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].value = "";
         }
     }
 }
+// UI class end
 
+// LocalStorage start
+class LocalStorage{
+
+}
+// LocalStorage end
+
+// Main start
 const form = document.querySelector("form");
 const clearAllBtn = document.querySelector("#clear-all-btn");
 const resultContainer = document.querySelector(".result-container")
 const ui = new UI();
 
+
+
 form.addEventListener("submit", addItem);
 clearAllBtn.addEventListener("click", ui.clearAllItems);
-resultContainer.addEventListener("click", clearItem);
+resultContainer.addEventListener("click", (e) => ui.clearItem(e.target));
 var myTimeoutID;
 
 function addItem(e) {
@@ -79,13 +91,9 @@ function addItem(e) {
     const isbn = document.querySelector(".isbn-input");
 
     const book = new Book(title.value, author.value, isbn.value);
-
-    if(book.formCheck()) {
+    if (book.formCheck()) {
         ui.addBookToList(book);
+        ui.clearFields();
     }
 }
-
-function clearItem (e) {
-    ui.clearItem(e.target);
-}
-
+// Main end
