@@ -117,21 +117,20 @@ const clearAllBtn = document.querySelector("#clear-all-btn");
 const resultContainer = document.querySelector(".result-container")
 const ui = new UI();
 
+document.addEventListener("DOMContentLoaded", Storage.displayBooks());
+
 form.addEventListener("submit", addItem);
 clearAllBtn.addEventListener("click", () => {
     ui.clearAllItems();
     Storage.removAllBooks();
 });
 resultContainer.addEventListener("click", (e) => {
-    console.log("removeBlockClicked");
     ui.clearItem(e.target)
     const target = e.target.parentElement.parentElement;
     const isbn = target.children[2].textContent;
-    console.log(isbn)
     Storage.removeBook(isbn);
 });
 
-Storage.displayBooks();
 var myTimeoutID;
 
 function addItem(e) {
