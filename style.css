@@ -111,15 +111,14 @@ form {
 .messageBox {
   display: none;
   align-items: center;
-  padding-left: 2.5%;
   color: black;
-  margin: auto;
-  width: 50%;
+  margin: auto auto auto 50px;
   border: 2px black solid;
   height: 75%;
   border-radius: 1px;
   font-size: 0.9rem;
   font-family: 'Roboto Slab', serif;
+  padding: 5px 20px 5px 20px;
 }
 
 .title {
@@ -127,7 +126,6 @@ form {
   font-size: 2.5rem;
   letter-spacing: 1.5px;
 }
-
 .title-input {
   font-size: 1.5rem;
   padding-bottom: 5px;

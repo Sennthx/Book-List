@@ -9,9 +9,18 @@ class Book {
         const ui = new UI();
         if (this.title !== "" && this.author !== "" && this.isbn !== "") {
             if (!isNaN(parseInt(this.isbn))) {
-                if (this.isbn.length === 13) {
+                if (this.isbn.length === 4) {
+                    const books = Storage.getBooks();
+                    let flag = false;
+                    for (let i = 0; i < books.length; i++) {
+                        if (parseInt(books[i].isbn) === parseInt(this.isbn)) {
+                            ui.sendMessage("This ISBN number already exists in the database", 0);
+                            return false;
+                        }
+                    }
+                    ui.sendMessage("Added Succesfully!", 1);
                     return true;
-                } else ui.sendMessage("The ISBN number needs to be 13 characters long!", 0);
+                } else ui.sendMessage("The ISBN number needs to be 4 characters long!", 0);
             } else ui.sendMessage("The ISBN number cannot contain any letters!", 0);
         } else ui.sendMessage("Please fill out the form first!", 0);
     }
@@ -24,7 +33,6 @@ class UI {
         // Creating items
         const div = document.createElement("div");
         div.className = "main-results-item";
-
         div.innerHTML = `<div class="title-items">${book.title}</div>
                          <div class="title-items">${book.author}</div>
                          <div class="title-items">${book.isbn}</div>
@@ -65,8 +73,41 @@ class UI {
 // UI class end
 
 // LocalStorage start
-class LocalStorage{
-
+class Storage {
+    static getBooks() {
+        let books;
+        if (localStorage.getItem("books") === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem("books"));
+        }
+        return books;
+    }
+    static displayBooks() {
+        const books = Storage.getBooks();
+        for (let i = 0; i < books.length; i++) {
+            const book = new Book(books[i].title, books[i].author, books[i].isbn);
+            ui.addBookToList(book);
+        }
+    }
+    static addBookToStorage(book) {
+        const books = Storage.getBooks();
+        books.push(book);
+        localStorage.setItem("books", JSON.stringify(books));
+    }
+    static removeBook(isbn) {
+        const books = Storage.getBooks();
+        for (let i = 0; i < books.length; i++) {
+            if (parseInt(books[i].isbn) === parseInt(isbn)) {
+                books.splice(i, 1);
+            }
+        }
+        localStorage.setItem("books", JSON.stringify(books));
+    }
+    static removAllBooks() {
+        const emptyArray = [];
+        localStorage.setItem("books", JSON.stringify(emptyArray));
+    }
 }
 // LocalStorage end
 
@@ -76,11 +117,21 @@ const clearAllBtn = document.querySelector("#clear-all-btn");
 const resultContainer = document.querySelector(".result-container")
 const ui = new UI();
 
-
-
 form.addEventListener("submit", addItem);
-clearAllBtn.addEventListener("click", ui.clearAllItems);
-resultContainer.addEventListener("click", (e) => ui.clearItem(e.target));
+clearAllBtn.addEventListener("click", () => {
+    ui.clearAllItems();
+    Storage.removAllBooks();
+});
+resultContainer.addEventListener("click", (e) => {
+    console.log("removeBlockClicked");
+    ui.clearItem(e.target)
+    const target = e.target.parentElement.parentElement;
+    const isbn = target.children[2].textContent;
+    console.log(isbn)
+    Storage.removeBook(isbn);
+});
+
+Storage.displayBooks();
 var myTimeoutID;
 
 function addItem(e) {
@@ -89,11 +140,11 @@ function addItem(e) {
     const title = document.querySelector(".book-input");
     const author = document.querySelector(".author-input");
     const isbn = document.querySelector(".isbn-input");
-
+    // Instantiate new book
     const book = new Book(title.value, author.value, isbn.value);
     if (book.formCheck()) {
         ui.addBookToList(book);
-        ui.clearFields();
+        Storage.addBookToStorage(book);
     }
 }
 // Main end
